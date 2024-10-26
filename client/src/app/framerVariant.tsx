@@ -3,7 +3,7 @@ import { motion, useCycle } from "framer-motion";
 import { Rating } from "@mui/material";
 import React from "react";
 import { useGetFeedbackLinkQuery } from "@/state/api";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import FeedbackForm from "./feedbackForm";
 
 // white circle animation variant
@@ -113,7 +113,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
     const goodRating = value! >= Number(business[0].ratingLimit);
     const businessId = business[0].id;
     const placId = business[0].placeId;
-    const router = useRouter()
+    // const router = useRouter()
 
     return (
         <motion.nav
@@ -148,7 +148,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
                     {
                         goodRating 
                         ? 
-                        router.push(`https://search.google.com/local/writereview?placeid=${placId}`) 
+                        redirect(`https://search.google.com/local/writereview?placeid=${placId}`) 
                         : 
                         toggleOpen();
                     }
