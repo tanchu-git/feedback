@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { delay, motion, useCycle } from "framer-motion";
 import { Rating } from "@mui/material";
 import React from "react";
@@ -8,26 +8,28 @@ import FeedbackForm from "./feedbackForm";
 
 const negFeedbackVariant = {
     open: (height = 1000) => ({
+        y: 0,
         clipPath: `circle(${height * 2}px)`,
         transition: {
-        type: "spring",
-        stiffness: 10,
-        restDelta: 2
+            type: "spring",
+            stiffness: 20,
+            restDelta: 2
         }
     }),
     closed: {
         clipPath: "circle(30px)",
+        y: 100,
         transition: {
             type: "spring",
-            stiffness: 200,
-            damping: 40
+            stiffness: 300,
+            damping: 40,
         }
     }
 };
 
 const buttonVariant = {
     open: {
-        y: 300,
+        y: 310,
         transition: {
             type: "spring",
             stiffness: 100,
@@ -35,7 +37,7 @@ const buttonVariant = {
         }
     },
     closed: {
-        y: 0,
+        y: 100,
         transition: {
             type: "spring",
             stiffness: 200,
@@ -46,8 +48,8 @@ const buttonVariant = {
 
 const ratingVariant = {
     open: {
-        y: -170,
-        scale: 1.5,
+        y: -290,
+        scale: 1,
         transition: {
             type: "spring",
             stiffness: 200,
@@ -55,7 +57,7 @@ const ratingVariant = {
         }
     },
     closed: {
-        y: 80,
+        y: 0,
         scale: 2,
         transition: {
             type: "spring",
@@ -68,7 +70,7 @@ const ratingVariant = {
 const titleVariant = {
     open: {
         y: -300,
-        x: -10,
+        x: -8,
         scale: 0,
         transition: {
             type: "spring",
@@ -77,8 +79,8 @@ const titleVariant = {
         }
     },
     closed: {
-        y: -120,
-        x: -10,
+        y: -110,
+        x: -8,
         scale: 1.5,
         transition: {
             type: "spring",
@@ -108,6 +110,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
     if (businessError || !business || !business[0]) return <div>{feedbackLink} - No such link</div>;
 
     const goodRating = value! >= Number(business[0].ratingLimit);
+    const businessId = business[0].id;
     const placId = business[0].placeId;
     const router = useRouter()
 
@@ -118,7 +121,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
             ref={containerRef}
         >            
             <motion.div className="background bg-white" variants={negFeedbackVariant} /> 
-            <FeedbackForm />
+            <FeedbackForm businessId={businessId} rating={value!} placeId={placId!} />
             <motion.h2 className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b from-black
                 to-[#0a38cf] text-transparent bg-clip-text"
                 variants={titleVariant}
@@ -127,7 +130,6 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
             </motion.h2>
             <motion.div variants={ratingVariant}>
                 <Rating
-                    className="mb-48"
                     size="large"
                     name="simple-controlled"
                     value={value}
@@ -146,7 +148,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
                     ? 
                     router.push(`https://search.google.com/local/writereview?placeid=${placId}`) 
                     : 
-                    toggleOpen()
+                    toggleOpen();
                 }}
             >   
             {isOpen ? "Back" : "Go!"}

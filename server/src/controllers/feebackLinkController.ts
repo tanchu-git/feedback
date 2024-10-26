@@ -23,3 +23,29 @@ export const getFeedbackLink = async (
         res.status(500).json({message: `Error retrieving businesses: ${error.message}`});
     }
 }
+
+export const createFeedback = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
+    const {businessId, rating, name, email, tags, message, date, placeId, read} = req.body;
+    try {
+        // Create new data in the business schema
+        const newFeedback = await prisma.feedback.create({
+            data: { 
+                businessId, 
+                rating, 
+                name, 
+                email,
+                tags,
+                message,
+                date,
+                placeId,
+                read
+            }
+        });
+        res.status(201).json(newFeedback);
+    } catch (error: any) {
+        res.status(500).json({message: `Error submitting feedback: ${error.message}`});
+    }
+}

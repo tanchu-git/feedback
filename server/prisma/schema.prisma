@@ -32,5 +32,21 @@ model Business {
   feedbackLink String?
   ratingLimit  Int?
 
-  User User? @relation(fields: [ownerId], references: [userId])
+  User     User?      @relation(fields: [ownerId], references: [userId])
+  Feedback Feedback[]
+}
+
+model Feedback {
+  id         Int      @id @default(autoincrement())
+  businessId Int
+  rating     Int
+  name       String?
+  email      String?
+  tags       String[]
+  message    String?
+  date       String
+  placeId    String
+  read       Boolean
+
+  Business Business? @relation(fields: [businessId], references: [id])
 }

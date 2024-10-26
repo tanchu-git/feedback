@@ -21,12 +21,25 @@ export interface Business {
     user?: User
 }
 
+export interface Feedback {
+    id: number;
+    businessId: number;
+    rating: number;
+    name: string;
+    email: string;
+    tags: string[];
+    message: string;
+    date: string;
+    placeId: string;
+    read: boolean;
+}
+
 // Create API to call the backend front the frontend
 export const api = createApi({
     // Grab the URL in .env 
     baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL}),
     reducerPath: "api",
-    tagTypes: ["Business"],
+    tagTypes: ["Business", "Feedback"],
     // Redux query
     endpoints: (build) => ({        
         getFeedbackLink: build.query<Business[], {feedbackLink: string}>({
@@ -37,9 +50,20 @@ export const api = createApi({
                     ? result.map(({id}) => ({type: "Business" as const, id})) 
                     : [{type: "Business" as const}]
         }),
+        createFeedback: build.mutation<Feedback, Partial<Feedback>>({
+            // POST body
+            query: (feedback) => ({
+                url: "feedback",
+                method: "POST",
+                body: feedback
+            }),
+            // Get updated list
+            invalidatesTags: ["Feedback"]
+        }),
     })
 })
 
 export const {
-    useGetFeedbackLinkQuery
+    useGetFeedbackLinkQuery,
+    useCreateFeedbackMutation
 } = api;

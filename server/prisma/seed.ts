@@ -27,7 +27,8 @@ async function main() {
 // Make sure to seed the data in order of connectivity
   const orderedFileNames = [
     "user.json",
-    "business.json"
+    "business.json",
+    "feedback.json"
   ];
 
   await deleteAllData(orderedFileNames);

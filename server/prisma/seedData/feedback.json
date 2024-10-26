@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "businessId": 1,
+    "rating": 1,
+    "name": "Cass",
+    "email": "name@gmail.com",
+    "tags": ["product", "service"],
+    "message": "Food taste nothing and service was horrible",
+    "date": "2024-04-13T08:30:00Z",
+    "placeId": "ChIJVY04bVvzT0YR0eKKTBsxJj0",
+    "read": false
+  }
+]
