@@ -3,7 +3,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { motion } from "framer-motion";
 import React, { useState } from 'react';
-import { Box, Button, FormLabel, TextField } from '@mui/material';
+import { Button, FormLabel, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useCreateFeedbackMutation } from '@/state/api';
 
@@ -55,17 +55,15 @@ export const FeedbackForm = ({ businessId, rating, placeId }: Props) => {
 
         const date = new Date().toISOString();
 
-        let tags = Array();
+        const tags: string[] = [];
 
-        tagProduct ? tags.push(tagProduct) : tags.filter( (tag) => tag !== tagProduct )
-        tagService ? tags.push(tagService) : tags.filter( (tag) => tag !== tagService )
-        tagStaff ? tags.push(tagStaff) : tags.filter( (tag) => tag !== tagStaff )
-        tagOther ? tags.push(tagOther) : tags.filter( (tag) => tag !== tagOther )
-
+        {
+            tagProduct ? tags.push(tagProduct) : tags.filter( (tag) => tag !== tagProduct )
+            tagService ? tags.push(tagService) : tags.filter( (tag) => tag !== tagService )
+            tagStaff ? tags.push(tagStaff) : tags.filter( (tag) => tag !== tagStaff )
+            tagOther ? tags.push(tagOther) : tags.filter( (tag) => tag !== tagOther )
+        }
         
-        console.log(date)
-        console.log(tags)
-
         await createFeedback({
             businessId: businessId,
             rating: rating,
@@ -188,16 +186,6 @@ export const FeedbackForm = ({ businessId, rating, placeId }: Props) => {
                     variant="contained" 
                     endIcon={<SendIcon />}
                     onClick={ () => {
-                        console.log(tagProduct)
-                        console.log(tagService)
-                        console.log(tagStaff)
-                        console.log(tagOther)
-                        console.log(message)
-                        console.log(name)
-                        console.log(email)
-                        console.log(businessId)
-                        console.log(placeId)
-                        console.log(rating)
                         submit()
                     }}
                 >

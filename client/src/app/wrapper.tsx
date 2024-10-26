@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect } from 'react'
-import StoreProvider, { useAppSelector } from './redux';
+import React from 'react'
+import StoreProvider from './redux';
 
 const Layout = ({children} : {children: React.ReactNode}) => {
 

@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { delay, motion, useCycle } from "framer-motion";
+import { useRef } from "react";
+import { motion, useCycle } from "framer-motion";
 import { Rating } from "@mui/material";
 import React from "react";
 import { useGetFeedbackLinkQuery } from "@/state/api";
@@ -145,11 +145,13 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
                 className="background w-[50px] h-[50px] outline-none border-none 
                     font-bold text-blue-900 text-xl cursor-pointer bg-transparent"
                 onClick={ () => { 
-                    goodRating 
-                    ? 
-                    router.push(`https://search.google.com/local/writereview?placeid=${placId}`) 
-                    : 
-                    toggleOpen();
+                    {
+                        goodRating 
+                        ? 
+                        router.push(`https://search.google.com/local/writereview?placeid=${placId}`) 
+                        : 
+                        toggleOpen();
+                    }
                 }}
             >   
             {isOpen ? "Back" : "Go!"}
