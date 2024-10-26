@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #0055ff 0%, rgb(0, 153, 255) 100%);
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background {
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.negButton {
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left:auto;
+  margin-right:auto;
+}

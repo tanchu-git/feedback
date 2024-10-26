@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "ownerId": 1,
+    "name": "Ramen A",
+    "street": "Kungsgatan 1",
+    "postcode": 41404,
+    "city": "Gothenburg",
+    "placeId": "ChIJVY04bVvzT0YR0eKKTBsxJj0",
+    "feedbackLink": "123student",
+    "ratingLimit": 4
+  },
+  {
+    "id": 2,
+    "ownerId": 2,
+    "name": "Ramen B",
+    "street": "Kungsgatan 2",
+    "postcode": 42414,
+    "city": "Gothenburg",
+    "placeId": "ChIJVY04bVvzT0YR0eKKTBsxJj0",
+    "feedbackLink": "123student",
+    "ratingLimit": 4
+  },
+  {
+    "id": 3,
+    "ownerId": 1,
+    "name": "Ramen C",
+    "street": "Kungsgatan 3",
+    "postcode": 43424,
+    "city": "Gothenburg",
+    "placeId": "ChIJVY04bVvzT0YR0eKKTBsxJj0",
+    "feedbackLink": "123student",
+    "ratingLimit": 4
+  },
+  {
+    "id": 4,
+    "ownerId": 2,
+    "name": "Ramen D",
+    "street": "Kungsgatan 4",
+    "postcode": 44434,
+    "city": "Gothenburg",
+    "placeId": "ChIJVY04bVvzT0YR0eKKTBsxJj0",
+    "feedbackLink": "123student",
+    "ratingLimit": 4
+  }
+]
