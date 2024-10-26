@@ -6,6 +6,7 @@ import { useGetFeedbackLinkQuery } from "@/state/api";
 import { useRouter } from "next/navigation";
 import FeedbackForm from "./feedbackForm";
 
+// white circle animation
 const negFeedbackVariant = {
     open: (height = 1000) => ({
         y: 0,
