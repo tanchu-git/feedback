@@ -14,7 +14,7 @@ const Layout = ({children} : {children: React.ReactNode}) => {
   )
 }
 
-// Make it compatible with redux toolki by wrapping the layout and export it 
+// Make it compatible with redux toolki by wrapping the layout
 const LayoutWrapper = ({children} : {children: React.ReactNode}) => {
   return (
     <StoreProvider>
