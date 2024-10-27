@@ -98,6 +98,7 @@ type Props = {
 }
 
 export const FeedbackView = ( { feedbackLink }: Props ) => {
+    const { push } = useRouter();
     const [isOpen, toggleOpen] = useCycle(false, true);
     const containerRef = useRef(null);
 
@@ -114,9 +115,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
 
     const goodRating = value! >= Number(business[0].ratingLimit);
     const businessId = business[0].id;
-    const placId = business[0].placeId;
-    // meh
-    const { push } = useRouter();
+    const placId = business[0].placeId;  
 
     return (
         <motion.nav
