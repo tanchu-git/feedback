@@ -26,10 +26,6 @@ export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props)
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
     const disableSubmit = !tagProduct && !tagService && !tagStaff && !tagOther && !name && !email && !message
 
     const submit = async () => {
@@ -119,7 +115,6 @@ export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props)
                 <div className=''>
                     <TextField 
                         sx={{ width: '25ch' }}
-                        id="outlined-basic" 
                         label="Details.." 
                         variant="outlined"
                         size="small"
@@ -144,7 +139,6 @@ export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props)
                 </div>   
                 <TextField 
                     sx={{ width: '15ch', marginBottom: 1}}
-                    id="outlined-basic" 
                     label="Name" 
                     variant="outlined"
                     size="small"
@@ -152,7 +146,6 @@ export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props)
                 />               
                 <TextField 
                     sx={{ width: '25ch' }}
-                    id="outlined-basic" 
                     label="E-mail" 
                     variant="outlined"
                     size="small"

@@ -60,7 +60,8 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
             </motion.h2>
             <StarRating isOpen={isOpen} setValue={setValue} value={value}></StarRating>
             <motion.button
-                variants={buttonVariant}             
+                variants={buttonVariant}
+                disabled={!value}         
                 className="background w-[50px] h-[50px] outline-none border-none 
                     font-bold text-blue-900 text-xl cursor-pointer bg-transparent"
                 onClick={ () => { 
@@ -74,7 +75,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
                     }
                 }}
             >   
-                Go!
+                {!value? "?" : "Go!"}
             </motion.button>
             <motion.button
                 variants={backVariant}             
