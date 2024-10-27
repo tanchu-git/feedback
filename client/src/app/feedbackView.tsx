@@ -1,134 +1,12 @@
 import { useRef } from "react";
 import { motion, useCycle } from "framer-motion";
-import { Alert, AlertTitle, CircularProgress, Rating } from "@mui/material";
+import { Alert, AlertTitle, CircularProgress,  } from "@mui/material";
 import React from "react";
 import { useGetFeedbackLinkQuery } from "@/state/api";
 import { useRouter } from "next/navigation";
 import FeedbackForm from "./feedbackForm";
 import StarRating from "./starRating";
-
-// white circle animation variant
-const whiteCircleVariant = {
-    open: (height = 1000) => ({
-        y: 0,
-        clipPath: `circle(${height * 2}px)`,
-        transition: {
-            type: "spring",
-            stiffness: 20,
-            restDelta: 2
-        }
-    }),
-    closed: {
-        clipPath: "circle(30px)",
-        y: 100,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 40,
-        }
-    },
-    submitted: {
-        y: 2000,
-        x: -50,
-        opacity: 0,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 60
-        }
-    }
-};
-
-const buttonVariant = {
-    open: {
-        y: 1000,
-        transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 40
-        }
-    },
-    closed: {
-        y: 100,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 40
-        }
-    },
-    submitted: {
-        y: 2000,
-        x: -50,
-        opacity: 0,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 60
-        }
-    }
-}
-
-const backVariant = {
-    open: {
-        y: 310,
-        transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 40
-        }
-    },
-    closed: {
-        y: -1000,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 40
-        }
-    },
-    submitted: {
-        y: 2000,
-        x: -50,
-        opacity: 0,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 60
-        }
-    }
-}
-
-const titleVariant = {
-    open: {
-        y: -300,
-        x: -8,
-        scale: 0,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 50
-        }
-    },
-    closed: {
-        y: -150,
-        x: -8,
-        scale: 1.5,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 50
-        }
-    },
-    submitted: {
-        y: -150,
-        x: -8,
-        scale: 1.5,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 50
-        }
-    }
-}
+import { whiteCircleVariant, titleVariant, buttonVariant, backVariant } from "./variants";
 
 type Props = {
     feedbackLink: string
@@ -178,7 +56,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
                     from-black to-[#0a38cf] text-transparent bg-clip-text"
                 variants={titleVariant}
             >
-                {isOpen ? "Feedback recieved!" : "Share your thoughts"}
+                {isOpen ? "Feedback received!" : "Share your thoughts"}
             </motion.h2>
             <StarRating isOpen={isOpen} setValue={setValue} value={value}></StarRating>
             <motion.button

@@ -6,39 +6,7 @@ import React, { Dispatch, useState } from 'react';
 import { Button, CircularProgress, FormLabel, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useCreateFeedbackMutation } from '@/state/api';
-
-const formVariant = {
-    open: {
-        y: -300,
-        x: -50,
-        opacity: 1,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 60
-        }
-    },
-    closed: {
-        y: -700,
-        x: -50,
-        opacity: 0,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 60
-        }
-    },
-    submitted: {
-        y: 2000,
-        x: -50,
-        opacity: 0,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 60
-        }
-    }
-}
+import { formVariant } from './variants';
 
 type Props = {
     businessId: number

@@ -1,6 +1,6 @@
 "use client";
 
-import { FeedbackView } from "../framerVariant";
+import { FeedbackView } from "../feedbackView";
 
 export default function Page({ params }: { params: { feedbackLink: string } }) {    
     return (
