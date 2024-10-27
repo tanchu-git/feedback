@@ -20,6 +20,16 @@ const ratingVariant = {
             stiffness: 200,
             damping: 50
         }
+    },
+    submitted: {
+        y: 2000,
+        x: -50,
+        opacity: 0,
+        transition: {
+            type: "spring",
+            stiffness: 300,
+            damping: 60
+        }
     }
 }
 

@@ -2,8 +2,8 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { motion } from "framer-motion";
-import React, { useState } from 'react';
-import { Button, FormLabel, TextField } from '@mui/material';
+import React, { Dispatch, useState } from 'react';
+import { Button, CircularProgress, FormLabel, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useCreateFeedbackMutation } from '@/state/api';
 
@@ -27,6 +27,16 @@ const formVariant = {
             stiffness: 300,
             damping: 60
         }
+    },
+    submitted: {
+        y: 2000,
+        x: -50,
+        opacity: 0,
+        transition: {
+            type: "spring",
+            stiffness: 300,
+            damping: 60
+        }
     }
 }
 
@@ -34,27 +44,28 @@ type Props = {
     businessId: number
     rating: number
     placeId: string
+    setVariant: Dispatch<React.SetStateAction<string>>
 }
 
-export const FeedbackForm = ({ businessId, rating, placeId }: Props) => {
+export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props) => {
     const [tagProduct, setTagProduct] = useState("");
     const [tagService, setTagService] = useState("");
     const [tagStaff, setTagStaff] = useState("");
     const [tagOther, setTagOther] = useState("");
 
-    const [createFeedback, { isLoading }] = useCreateFeedbackMutation();
+    const [createFeedback, { isLoading, isError }] = useCreateFeedbackMutation();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     const disableSubmit = !tagProduct && !tagService && !tagStaff && !tagOther && !name && !email && !message
 
     const submit = async () => {
-        // Check if all fields are empty
-        if (!tagProduct && !tagService && !tagStaff && !tagOther && !name && !email && !message)  return;
-
         const date = new Date().toISOString();
-
         const tags: string[] = [];
 
         {
@@ -182,11 +193,12 @@ export const FeedbackForm = ({ businessId, rating, placeId }: Props) => {
             </FormGroup>
             <div className='mt-8 mx-[67px]'>
                 <Button 
-                    disabled={disableSubmit}
+                    disabled={disableSubmit || isLoading}
                     variant="contained" 
-                    endIcon={<SendIcon />}
+                    endIcon={isLoading ? <CircularProgress color="inherit" size={20}/> : <SendIcon />}
                     onClick={ () => {
                         submit()
+                        setVariant("submitted")      
                     }}
                 >
                     Submit
