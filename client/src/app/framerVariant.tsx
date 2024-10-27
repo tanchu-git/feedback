@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useCycle } from "framer-motion";
-import { Rating } from "@mui/material";
+import { Alert, AlertTitle, CircularProgress, Rating } from "@mui/material";
 import React from "react";
 import { useGetFeedbackLinkQuery } from "@/state/api";
 import { useRouter } from "next/navigation";
@@ -79,7 +79,6 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
     const { push } = useRouter();
     const [isOpen, toggleOpen] = useCycle(false, true);
     const containerRef = useRef(null);
-
     const [value, setValue] = React.useState<number | null>(2);    
 
     const {
@@ -88,8 +87,19 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
         isError: businessError
       } = useGetFeedbackLinkQuery({ feedbackLink: feedbackLink });
 
-    if (businessLoading) return <div>Loading..</div>;
-    if (businessError || !business || !business[0]) return <div>{feedbackLink} - No such link</div>;
+    if (businessLoading) {
+        return <div><CircularProgress size={80} /></div>
+    }
+    if (businessError || !business || !business[0]) {
+        return (
+                <div>
+                    <Alert variant="filled" severity="info">
+                        <AlertTitle>Error</AlertTitle>
+                        Please verify your link
+                    </Alert>
+                </div>
+            )
+    }
 
     const goodRating = value! >= Number(business[0].ratingLimit);
     const businessId = business[0].id;
@@ -103,8 +113,9 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
         >            
             <motion.div className="background bg-white" variants={whiteCircleVariant} /> 
             <FeedbackForm businessId={businessId} rating={value!} placeId={placId!} />
-            <motion.h2 className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b from-black
-                to-[#0a38cf] text-transparent bg-clip-text"
+            <motion.h2 
+                className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b 
+                    from-black to-[#0a38cf] text-transparent bg-clip-text"
                 variants={titleVariant}
             >
                 Share your thoughts
@@ -124,7 +135,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
                     }
                 }}
             >   
-            {isOpen ? "Back" : "Go!"}
+                {isOpen ? "Back" : "Go!"}
             </motion.button>
         </motion.nav>    
     )

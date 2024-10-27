@@ -30,7 +30,6 @@ type Props = {
 }
 
 export const StarRating = ({ isOpen, setValue, value }: Props) => {
-
     return (
         <motion.div variants={ratingVariant}>
             <Rating
@@ -44,7 +43,6 @@ export const StarRating = ({ isOpen, setValue, value }: Props) => {
             />
          </motion.div>
     )
-
 }
 
 export default StarRating
