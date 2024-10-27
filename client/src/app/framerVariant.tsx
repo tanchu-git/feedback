@@ -5,11 +5,10 @@ import React from "react";
 import { useGetFeedbackLinkQuery } from "@/state/api";
 import { useRouter } from "next/navigation";
 import FeedbackForm from "./feedbackForm";
-import Router from 'next/router';
-import Link from "next/link";
+import StarRating from "./starRating";
 
 // white circle animation variant
-const negFeedbackVariant = {
+const whiteCircleVariant = {
     open: (height = 1000) => ({
         y: 0,
         clipPath: `circle(${height * 2}px)`,
@@ -45,27 +44,6 @@ const buttonVariant = {
             type: "spring",
             stiffness: 200,
             damping: 40
-        }
-    }
-}
-
-const ratingVariant = {
-    open: {
-        y: -350,
-        scale: 1,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 50
-        }
-    },
-    closed: {
-        y: -50,
-        scale: 2,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 50
         }
     }
 }
@@ -123,7 +101,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
             animate={isOpen ? "open" : "closed"}
             ref={containerRef}
         >            
-            <motion.div className="background bg-white" variants={negFeedbackVariant} /> 
+            <motion.div className="background bg-white" variants={whiteCircleVariant} /> 
             <FeedbackForm businessId={businessId} rating={value!} placeId={placId!} />
             <motion.h2 className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b from-black
                 to-[#0a38cf] text-transparent bg-clip-text"
@@ -131,17 +109,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
             >
                 Share your thoughts
             </motion.h2>
-            <motion.div variants={ratingVariant}>
-                <Rating
-                    size="large"
-                    name="simple-controlled"
-                    value={value}
-                    readOnly={isOpen ? true : false}
-                    onChange={(event, newValue) => {
-                    setValue(newValue);
-                    }}
-                />
-            </motion.div>
+            <StarRating isOpen={isOpen} setValue={setValue} value={value}></StarRating>
             <motion.button
                 variants={buttonVariant}             
                 className="background w-[50px] h-[50px] outline-none border-none 
