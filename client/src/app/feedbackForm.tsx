@@ -9,7 +9,7 @@ import { useCreateFeedbackMutation } from '@/state/api';
 
 const formVariant = {
     open: {
-        y: -270,
+        y: -300,
         x: -50,
         opacity: 1,
         transition: {

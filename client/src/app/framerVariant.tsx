@@ -51,7 +51,7 @@ const buttonVariant = {
 
 const ratingVariant = {
     open: {
-        y: -320,
+        y: -350,
         scale: 1,
         transition: {
             type: "spring",
