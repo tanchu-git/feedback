@@ -51,7 +51,7 @@ const buttonVariant = {
 
 const ratingVariant = {
     open: {
-        y: -290,
+        y: -320,
         scale: 1,
         transition: {
             type: "spring",
@@ -60,7 +60,7 @@ const ratingVariant = {
         }
     },
     closed: {
-        y: 0,
+        y: -50,
         scale: 2,
         transition: {
             type: "spring",
@@ -82,7 +82,7 @@ const titleVariant = {
         }
     },
     closed: {
-        y: -110,
+        y: -150,
         x: -8,
         scale: 1.5,
         transition: {
