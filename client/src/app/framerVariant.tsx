@@ -115,6 +115,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
     const goodRating = value! >= Number(business[0].ratingLimit);
     const businessId = business[0].id;
     const placId = business[0].placeId;
+    // meh
     const { push } = useRouter();
 
     return (
