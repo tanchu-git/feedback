@@ -3,7 +3,7 @@
 import React from 'react'
 import StoreProvider from './redux';
 
-const Layout = ({children} : {children: React.ReactNode}) => {
+const Layout = ( {children} : {children: React.ReactNode} ) => {
 
   return (
     <div>
@@ -15,7 +15,7 @@ const Layout = ({children} : {children: React.ReactNode}) => {
 }
 
 // Make it compatible with redux toolkit by wrapping the layout
-const LayoutWrapper = ({children} : {children: React.ReactNode}) => {
+const LayoutWrapper = ( {children} : {children: React.ReactNode} ) => {
   return (
     <StoreProvider>
       <Layout>{children}</Layout>

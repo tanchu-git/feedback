@@ -14,7 +14,8 @@ type Props = {
 }
 
 // Main page to structure all components
-export const FeedbackView = ( { feedbackLink }: Props ) => {
+export const FeedbackView = ( {feedbackLink}: Props ) => {
+    // Always put all hooks at top!
     const { push } = useRouter();
     const [isOpen, toggleOpen] = useCycle(false, true);
     const containerRef = useRef(null);
@@ -26,7 +27,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
         data: business,
         isLoading: businessLoading,
         isError: businessError
-      } = useGetFeedbackLinkQuery({ feedbackLink: feedbackLink });
+      } = useGetFeedbackLinkQuery( {feedbackLink: feedbackLink} );
 
     if (businessLoading) {
         return <div><CircularProgress size={80} /></div>
@@ -48,7 +49,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
     const placId = business[0].placeId;  
 
     return (
-        // Main input for animation
+        // Main input for animation, hooks and data for components to use
         <motion.nav
             initial={"closed"}
             animate={variant}
@@ -56,7 +57,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
         >
             {/* Animation - small white circle to expand and cover whole page */}
             <motion.div className="background bg-white" variants={whiteCircleVariant} /> 
-            
+
             {/* Feedback component */}
             <FeedbackForm businessId={businessId} rating={value!} placeId={placId!} setVariant={setVariant} />
 
@@ -96,7 +97,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
                     }
                 }}
             >   
-                {!value? <PanToolAltIcon fontSize="large"/> : "Go!"}
+                {!value ? <PanToolAltIcon fontSize="large"/> : "Go!"}
             </motion.button>
             <motion.button
                 variants={backVariant}             

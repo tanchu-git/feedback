@@ -49,7 +49,8 @@ type Props = {
     value: number | null
 }
 
-export const StarRating = ({ isOpen, setValue, value }: Props) => {
+// Make readOnly in feedback form view
+export const StarRating = ( {isOpen, setValue, value}: Props ) => {
     return (
         <motion.div variants={ratingVariant}>
             <Rating
@@ -57,7 +58,7 @@ export const StarRating = ({ isOpen, setValue, value }: Props) => {
                 name="stars"
                 value={value}
                 readOnly={isOpen ? true : false}
-                onChange={(_event, newValue) => {
+                onChange={ (_event, newValue) => {
                 setValue(newValue);
                 }}
             />

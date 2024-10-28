@@ -15,7 +15,7 @@ type Props = {
     setVariant: Dispatch<React.SetStateAction<string>>
 }
 
-export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props) => {
+export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props ) => {
     const [tagProduct, setTagProduct] = useState("");
     const [tagService, setTagService] = useState("");
     const [tagStaff, setTagStaff] = useState("");
@@ -33,6 +33,7 @@ export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props)
         const date = new Date().toISOString();
         const tags: string[] = [];
 
+        // Checkboxes data input
         {
             tagProduct ? tags.push(tagProduct) : tags.filter( (tag) => tag !== tagProduct )
             tagService ? tags.push(tagService) : tags.filter( (tag) => tag !== tagService )
@@ -59,7 +60,7 @@ export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props)
     }
 
     return (
-        // Bulding the form
+        // Bulding the feedback form
         <motion.div className='absolute' variants={formVariant}>
             <div>
                 <FormLabel 

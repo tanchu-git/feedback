@@ -1,3 +1,5 @@
+// Animations data for the components to use
+
 export const whiteCircleVariant = {
     open: (height = 1000) => ({
         y: 0,
