@@ -11,11 +11,11 @@ export const whiteCircleVariant = {
         }
     }),
     closed: {
-        clipPath: "circle(30px)",
+        clipPath: "circle(0px)",
         y: 100,
         transition: {
             type: "spring",
-            stiffness: 300,
+            stiffness: 310,
             damping: 40,
         }
     },
@@ -43,7 +43,8 @@ export const whiteCircleVariant = {
 
 export const buttonVariant = {
     open: {
-        y: 1000,
+        y: 275,
+        x: 47,
         transition: {
             type: "spring",
             stiffness: 100,
@@ -51,10 +52,11 @@ export const buttonVariant = {
         }
     },
     closed: {
-        y: 100,
+        y: 55,
+        x: 47,
         transition: {
             type: "spring",
-            stiffness: 200,
+            stiffness: 300,
             damping: 40
         }
     },
@@ -65,43 +67,6 @@ export const buttonVariant = {
     error: {
         y: 2000,
         x: -50,
-    }
-}
-
-export const backVariant = {
-    open: {
-        y: 310,
-        transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 40
-        }
-    },
-    closed: {
-        y: 1000,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 40
-        }
-    },
-    submitted: {
-        y: 2000,
-        x: -50,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 60
-        }
-    },
-    error: {
-        y: 2000,
-        x: -50,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 60
-        }
     }
 }
 

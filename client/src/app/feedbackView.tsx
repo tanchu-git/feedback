@@ -1,13 +1,13 @@
 import { useRef } from "react";
 import { motion, useCycle } from "framer-motion";
-import { Alert, AlertTitle, CircularProgress,  } from "@mui/material";
+import { Alert, AlertTitle, CircularProgress, Fab,  } from "@mui/material";
 import PanToolAltIcon from '@mui/icons-material/PanToolAlt';
 import React from "react";
 import { useGetFeedbackLinkQuery } from "@/state/api";
 import { useRouter } from "next/navigation";
 import FeedbackForm from "./feedbackForm";
 import StarRating from "./starRating";
-import { whiteCircleVariant, titleVariant, buttonVariant, backVariant, errorVariant } from "./variants";
+import { whiteCircleVariant, titleVariant, buttonVariant, errorVariant } from "./variants";
 
 type Props = {
     feedbackLink: string
@@ -80,38 +80,31 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
             {/* Rating component */}
             <StarRating isOpen={isOpen} setValue={setValue} value={value}></StarRating>
 
-            {/* Buttons to display */}
-            <motion.button
-                variants={buttonVariant}
-                disabled={!value}         
-                className="background w-[50px] h-[50px] outline-none border-none 
-                    font-bold text-blue-900 text-xl cursor-pointer bg-transparent"
-                onClick={ () => { 
-                    {
-                        goodRating 
-                        ? 
-                        push(`https://search.google.com/local/writereview?placeid=${placId}`) 
-                        : 
-                        setVariant("open");
-                        toggleOpen();
-                    }
-                }}
-            >   
-                {!value ? <PanToolAltIcon fontSize="large"/> : "Go!"}
-            </motion.button>
-            <motion.button
-                variants={backVariant}             
-                className="background w-[50px] h-[50px] outline-none border-none 
-                    font-bold text-blue-900 text-xl cursor-pointer bg-transparent"
-                onClick={ () => { 
-                    {
-                        setVariant("closed");
-                        toggleOpen();
-                    }
-                }}
-            >   
-                Back
-            </motion.button>
+            {/* Button to display */}
+            <motion.div
+                variants={buttonVariant}                
+                className="absolute"                
+            >
+                <Fab 
+                    disabled={!value}
+                    color="primary"
+                    onClick={ () => { 
+                        {
+                            goodRating 
+                            ? 
+                            push(`https://search.google.com/local/writereview?placeid=${placId}`) 
+                            :                         
+                            !isOpen
+                            ?
+                            ( toggleOpen(), setVariant("open") )
+                            :
+                            ( toggleOpen(), setVariant("closed") )
+                        }
+                    }}
+                >
+                    {!value ? <PanToolAltIcon fontSize="large" /> : isOpen ? "Back" : "Go!"}
+                </Fab>
+            </motion.div>
         </motion.nav>    
     )
 }
