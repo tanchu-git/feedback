@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useCycle } from "framer-motion";
 import { Alert, AlertTitle, CircularProgress,  } from "@mui/material";
+import PanToolAltIcon from '@mui/icons-material/PanToolAlt';
 import React from "react";
 import { useGetFeedbackLinkQuery } from "@/state/api";
 import { useRouter } from "next/navigation";
@@ -16,7 +17,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
     const { push } = useRouter();
     const [isOpen, toggleOpen] = useCycle(false, true);
     const containerRef = useRef(null);
-    const [value, setValue] = React.useState<number | null>(2);
+    const [value, setValue] = React.useState<number | null>(0);
     const [variant, setVariant] = React.useState("");
 
     const {
@@ -75,7 +76,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
                     }
                 }}
             >   
-                {!value? "?" : "Go!"}
+                {!value? <PanToolAltIcon fontSize="large"/> : "Go!"}
             </motion.button>
             <motion.button
                 variants={backVariant}             
