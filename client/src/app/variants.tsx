@@ -43,7 +43,7 @@ export const whiteCircleVariant = {
 
 export const buttonVariant = {
     open: {
-        y: 275,
+        y: 270,
         x: 47,
         transition: {
             type: "spring",
@@ -67,6 +67,16 @@ export const buttonVariant = {
     error: {
         y: 2000,
         x: -50,
+    },
+    disabled: {
+        y: [70, 40, 70],
+        x: 47,
+        transition: {
+            duration: 1.5,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 0.3
+        }
     }
 }
 
@@ -118,7 +128,7 @@ export const formVariant = {
         }
     },
     closed: {
-        y: -700,
+        y: 1000,
         x: -50,
         opacity: 0,
         transition: {

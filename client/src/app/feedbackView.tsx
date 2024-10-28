@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { motion, useCycle } from "framer-motion";
 import { Alert, AlertTitle, CircularProgress, Fab,  } from "@mui/material";
 import PanToolAltIcon from '@mui/icons-material/PanToolAlt';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import DoneIcon from '@mui/icons-material/Done';
 import React from "react";
 import { useGetFeedbackLinkQuery } from "@/state/api";
 import { useRouter } from "next/navigation";
@@ -82,7 +84,9 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
 
             {/* Button to display */}
             <motion.div
-                variants={buttonVariant}                
+                initial={"closed"}
+                variants={buttonVariant}
+                animate={value ? variant : "disabled"}             
                 className="absolute"                
             >
                 <Fab 
@@ -102,7 +106,11 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
                         }
                     }}
                 >
-                    {!value ? <PanToolAltIcon fontSize="large" /> : isOpen ? "Back" : "Go!"}
+                    {
+                        !value ? <PanToolAltIcon fontSize="large" /> : 
+                        isOpen ? <RefreshIcon fontSize="large"  /> : 
+                            <DoneIcon fontSize="large" />
+                    }
                 </Fab>
             </motion.div>
         </motion.nav>    
