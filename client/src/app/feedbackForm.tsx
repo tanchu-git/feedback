@@ -21,13 +21,14 @@ export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props)
     const [tagStaff, setTagStaff] = useState("");
     const [tagOther, setTagOther] = useState("");
 
-    const [createFeedback, { isLoading, isError }] = useCreateFeedbackMutation();
+    const [createFeedback, { isLoading }] = useCreateFeedbackMutation();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
     const disableSubmit = !tagProduct && !tagService && !tagStaff && !tagOther && !name && !email && !message
 
+    // Async function building the feedback message
     const submit = async () => {
         const date = new Date().toISOString();
         const tags: string[] = [];
@@ -49,10 +50,16 @@ export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props)
             date: date,
             placeId: placeId,
             read: false,
-        })
+        }).then(
+                // success -> show success msg
+                // error -> show error msg
+                data => data.error ? setVariant("error") : setVariant("submitted"),
+                _err => setVariant("error")
+            )
     }
 
     return (
+        // Bulding the form
         <motion.div className='absolute' variants={formVariant}>
             <div>
                 <FormLabel 
@@ -155,11 +162,10 @@ export const FeedbackForm = ({ businessId, rating, placeId, setVariant }: Props)
             <div className='mt-8 mx-[67px]'>
                 <Button 
                     disabled={disableSubmit || isLoading}
-                    variant="contained" 
+                    variant="contained"
                     endIcon={isLoading ? <CircularProgress color="inherit" size={20}/> : <SendIcon />}
                     onClick={ () => {
-                        submit()
-                        setVariant("submitted")      
+                        submit()                        
                     }}
                 >
                     Submit

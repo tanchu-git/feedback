@@ -30,6 +30,16 @@ const ratingVariant = {
             stiffness: 300,
             damping: 60
         }
+    },
+    error: {
+        y: 2000,
+        x: -50,
+        opacity: 0,
+        transition: {
+            type: "spring",
+            stiffness: 300,
+            damping: 60
+        }
     }
 }
 
@@ -47,7 +57,7 @@ export const StarRating = ({ isOpen, setValue, value }: Props) => {
                 name="stars"
                 value={value}
                 readOnly={isOpen ? true : false}
-                onChange={(event, newValue) => {
+                onChange={(_event, newValue) => {
                 setValue(newValue);
                 }}
             />

@@ -26,6 +26,16 @@ export const whiteCircleVariant = {
             stiffness: 300, 
             damping: 60
         }
+    },
+    error: {
+        y: 2000,
+        x: -50,
+        opacity: 0,
+        transition: {
+            type: "spring",
+            stiffness: 300, 
+            damping: 60
+        }
     }
 };
 
@@ -49,6 +59,10 @@ export const buttonVariant = {
     submitted: {
         y: 2000,
         x: -50,
+    },
+    error: {
+        y: 2000,
+        x: -50,
     }
 }
 
@@ -70,6 +84,15 @@ export const backVariant = {
         }
     },
     submitted: {
+        y: 2000,
+        x: -50,
+        transition: {
+            type: "spring",
+            stiffness: 300,
+            damping: 60
+        }
+    },
+    error: {
         y: 2000,
         x: -50,
         transition: {
@@ -110,6 +133,9 @@ export const titleVariant = {
             stiffness: 200,
             damping: 50
         }
+    },
+    error: {
+        scale: 0,
     }
 }
 
@@ -141,6 +167,37 @@ export const formVariant = {
             type: "spring",
             stiffness: 300,
             damping: 60
+        }
+    },
+    error: {
+        y: 2000,
+        x: -50,
+        transition: {
+            type: "spring",
+            stiffness: 300,
+            damping: 60
+        }
+    }
+}
+
+export const errorVariant = {
+    open: {
+        scale: 0,
+    },
+    closed: {
+        scale: 0,
+    },
+    submitted: {
+        scale: 0,
+    },
+    error: {
+        y: -150,
+        x: -8,
+        scale: 1.5,
+        transition: {
+            type: "spring",
+            stiffness: 200,
+            damping: 50
         }
     }
 }

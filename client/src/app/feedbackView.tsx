@@ -7,12 +7,13 @@ import { useGetFeedbackLinkQuery } from "@/state/api";
 import { useRouter } from "next/navigation";
 import FeedbackForm from "./feedbackForm";
 import StarRating from "./starRating";
-import { whiteCircleVariant, titleVariant, buttonVariant, backVariant } from "./variants";
+import { whiteCircleVariant, titleVariant, buttonVariant, backVariant, errorVariant } from "./variants";
 
 type Props = {
     feedbackLink: string
 }
 
+// Main page to structure all components
 export const FeedbackView = ( { feedbackLink }: Props ) => {
     const { push } = useRouter();
     const [isOpen, toggleOpen] = useCycle(false, true);
@@ -20,6 +21,7 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
     const [value, setValue] = React.useState<number | null>(0);
     const [variant, setVariant] = React.useState("");
 
+    // Prisma built await function
     const {
         data: business,
         isLoading: businessLoading,
@@ -40,18 +42,25 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
             )
     }
 
+    // Check if no rating has been selected
     const goodRating = value! >= Number(business[0].ratingLimit);
     const businessId = business[0].id;
     const placId = business[0].placeId;  
 
     return (
+        // Main input for animation
         <motion.nav
             initial={"closed"}
             animate={variant}
             ref={containerRef}
-        >            
+        >
+            {/* Animation - small white circle to expand and cover whole page */}
             <motion.div className="background bg-white" variants={whiteCircleVariant} /> 
+            
+            {/* Feedback component */}
             <FeedbackForm businessId={businessId} rating={value!} placeId={placId!} setVariant={setVariant} />
+
+            {/* Titles to display */}
             <motion.h2 
                 className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b 
                     from-black to-[#0a38cf] text-transparent bg-clip-text"
@@ -59,7 +68,18 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
             >
                 {isOpen ? "Feedback received!" : "Share your thoughts"}
             </motion.h2>
+            <motion.h2 
+                className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b 
+                    from-black to-[#0a38cf] text-transparent bg-clip-text max-w-48"
+                variants={errorVariant}
+            >
+                Oopsie! Something went wrong on our end. Please try again later!
+            </motion.h2>
+
+            {/* Rating component */}
             <StarRating isOpen={isOpen} setValue={setValue} value={value}></StarRating>
+
+            {/* Buttons to display */}
             <motion.button
                 variants={buttonVariant}
                 disabled={!value}         
