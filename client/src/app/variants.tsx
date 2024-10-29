@@ -43,7 +43,7 @@ export const whiteCircleVariant = {
 
 export const buttonVariant = {
     open: {
-        y: 270,
+        y: 230,
         x: 47,
         transition: {
             type: "spring",
@@ -118,7 +118,7 @@ export const titleVariant = {
 
 export const formVariant = {
     open: {
-        y: -300,
+        y: -340,
         x: -50,
         opacity: 1,
         transition: {

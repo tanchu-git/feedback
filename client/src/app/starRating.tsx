@@ -4,7 +4,7 @@ import React, { Dispatch, SetStateAction } from "react";
 
 const ratingVariant = {
     open: {
-        y: -350,
+        y: -390,
         scale: 1,
         transition: {
             type: "spring",

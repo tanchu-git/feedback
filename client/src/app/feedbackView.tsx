@@ -38,8 +38,18 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
         return (
                 <div>
                     <Alert variant="filled" severity="info">
-                        <AlertTitle>Error</AlertTitle>
-                        Please verify your link
+                        <AlertTitle>
+                            <h2 className="text-2xl font-semibold tracking-tighter bg-gradient-to-b 
+                            from-black to-[#1443dd] text-transparent bg-clip-text"
+                            >
+                                Error
+                            </h2>
+                        </AlertTitle>
+                        <h2 className="text-2xl font-semibold tracking-tighter bg-gradient-to-b 
+                            from-black to-[#1443dd] text-transparent bg-clip-text"
+                        >
+                            Please verify your link
+                        </h2>
                     </Alert>
                 </div>
             )
@@ -48,7 +58,8 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
     // Check if no rating has been selected
     const goodRating = value! >= Number(business[0].ratingLimit);
     const businessId = business[0].id;
-    const placId = business[0].placeId;  
+    const placeId = business[0].placeId;  
+    const googleReview = "https://search.google.com/local/writereview?placeid=";
 
     return (
         // Main input for animation, hooks and data for components to use
@@ -61,7 +72,7 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
             <motion.div className="background bg-white" variants={whiteCircleVariant} /> 
 
             {/* Feedback component */}
-            <FeedbackForm businessId={businessId} rating={value!} placeId={placId!} setVariant={setVariant} />
+            <FeedbackForm businessId={businessId} rating={value!} placeId={placeId!} setVariant={setVariant} />
 
             {/* Titles to display */}
             <motion.h2 
@@ -96,7 +107,7 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
                         {
                             goodRating 
                             ? 
-                            push(`https://search.google.com/local/writereview?placeid=${placId}`) 
+                            push(googleReview + placeId) 
                             :                         
                             !isOpen
                             ?
