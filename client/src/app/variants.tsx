@@ -116,9 +116,50 @@ export const titleVariant = {
     }
 }
 
+export const ratingVariant = {
+    open: {
+        y: -380,
+        scale: 1,
+        transition: {
+            type: "spring",
+            stiffness: 200,
+            damping: 50
+        }
+    },
+    closed: {
+        y: -50,
+        scale: 2,
+        transition: {
+            type: "spring",
+            stiffness: 200,
+            damping: 50
+        }
+    },
+    submitted: {
+        y: 2000,
+        x: -50,
+        opacity: 0,
+        transition: {
+            type: "spring",
+            stiffness: 300,
+            damping: 60
+        }
+    },
+    error: {
+        y: 2000,
+        x: -50,
+        opacity: 0,
+        transition: {
+            type: "spring",
+            stiffness: 300,
+            damping: 60
+        }
+    }
+}
+
 export const formVariant = {
     open: {
-        y: -340,
+        y: -330,
         x: -50,
         opacity: 1,
         transition: {

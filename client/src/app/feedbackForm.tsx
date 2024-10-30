@@ -78,8 +78,8 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                     component="legend"
                     sx={{
                         color: 'black',
-                        fontSize: 18,
-                        mt: 1
+                        fontSize: 16,
+                        my: 1
                     }}
                 >
                     What went wrong?
@@ -89,7 +89,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                 <FormControlLabel 
                     control={
                     <Checkbox 
-                        sx={{ marginTop: "-4px" }}
+                        sx={ {marginTop: "-4px"} }
                         onChange={e => {
                             e.target.checked ? setTagProduct("Product") : setTagProduct("");
                         }}
@@ -98,7 +98,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                 />
                 <FormControlLabel control={
                     <Checkbox 
-                        sx={{ marginTop: "-4px" }}
+                        sx={ {marginTop: "-4px"} }
                         onChange={e => {
                             e.target.checked ? setTagService("Service") : setTagService("");
                     }}
@@ -106,7 +106,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                     label="Service" />
                 <FormControlLabel control={
                     <Checkbox 
-                        sx={{ marginTop: "-4px" }}
+                        sx={ {marginTop: "-4px"} }
                         onChange={e => {
                             e.target.checked ? setTagStaff("Staff") : setTagStaff("");  
                     }}
@@ -114,7 +114,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                     label="Staff" />
                 <FormControlLabel control={
                     <Checkbox 
-                        sx={{ marginTop: "-4px" }}
+                        sx={ {marginTop: "-4px"} }
                         onChange={e => {
                             e.target.checked ? setTagOther("Other") : setTagOther("");  
                     }}
@@ -122,7 +122,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                     label="Other" />
                 <div className=''>
                     <TextField 
-                        sx={{ width: '25ch' }}
+                        sx={ {width: '25ch'} }
                         label="Details.." 
                         variant="outlined"
                         size="small"
@@ -146,7 +146,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                     </FormLabel>
                 </div>   
                 <TextField 
-                    sx={{ width: '15ch', marginBottom: 1}}
+                    sx={ {width: '15ch', marginBottom: 1} }
                     label="Name" 
                     variant="outlined"
                     size="small"

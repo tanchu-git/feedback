@@ -1,47 +1,7 @@
 import { motion, useCycle } from "framer-motion";
 import { Rating } from "@mui/material";
 import React, { Dispatch, SetStateAction } from "react";
-
-const ratingVariant = {
-    open: {
-        y: -390,
-        scale: 1,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 50
-        }
-    },
-    closed: {
-        y: -50,
-        scale: 2,
-        transition: {
-            type: "spring",
-            stiffness: 200,
-            damping: 50
-        }
-    },
-    submitted: {
-        y: 2000,
-        x: -50,
-        opacity: 0,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 60
-        }
-    },
-    error: {
-        y: 2000,
-        x: -50,
-        opacity: 0,
-        transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 60
-        }
-    }
-}
+import { ratingVariant } from "./variants";
 
 type Props = {
     isOpen: boolean
