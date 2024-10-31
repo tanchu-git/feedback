@@ -35,10 +35,10 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
 
         // Checkboxes data input
         {
-            tagProduct ? tags.push(tagProduct) : tags.filter( (tag) => tag !== tagProduct )
-            tagService ? tags.push(tagService) : tags.filter( (tag) => tag !== tagService )
-            tagStaff ? tags.push(tagStaff) : tags.filter( (tag) => tag !== tagStaff )
-            tagOther ? tags.push(tagOther) : tags.filter( (tag) => tag !== tagOther )
+            if (tagProduct) tags.push(tagProduct)
+            if (tagService) tags.push(tagService)
+            if (tagStaff) tags.push(tagStaff)
+            if (tagOther) tags.push(tagOther)
         }
         
         await createFeedback({
