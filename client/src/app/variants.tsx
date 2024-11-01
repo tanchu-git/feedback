@@ -39,7 +39,7 @@ export const whiteCircleVariant = {
             damping: 60
         }
     }
-};
+}
 
 export const buttonVariant = {
     open: {
@@ -82,7 +82,7 @@ export const buttonVariant = {
 
 export const titleVariant = {
     open: {
-        y: -300,
+        y: -700,
         x: -8,
         scale: 0,
         transition: {

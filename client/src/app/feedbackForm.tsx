@@ -88,12 +88,12 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant, language
                     {languageText.formLabelTwo[language as keyof typeof languageText.formLabelTwo]}
                 </FormLabel>
             </div>
-            <div className='flex columns-2 justify-between mx-2'>
+            <div className='flex columns-2 gap-4 justify-start'>
                 <FormGroup>
                     <FormControlLabel 
                         control={
                         <Checkbox 
-                            sx={ {marginTop: "-4px"} }
+                            sx={ {marginTop: "-2px"} }
                             onChange={e => {
                                 e.target.checked ?
                                 setTagProduct(languageText.checkProduct[language as keyof typeof languageText.checkProduct]) :
@@ -104,7 +104,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant, language
                     />
                     <FormControlLabel control={
                         <Checkbox 
-                            sx={ {marginTop: "-4px"} }
+                            sx={ {marginTop: "-2px"} }
                             onChange={e => {
                                 e.target.checked ?
                                 setTagService(languageText.checkService[language as keyof typeof languageText.checkService]) :
@@ -117,7 +117,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant, language
                                     <FormGroup>
                     <FormControlLabel control={
                         <Checkbox 
-                            sx={ {marginTop: "-4px"} }
+                            sx={ {marginTop: "-2px"} }
                             onChange={e => {
                                 e.target.checked ?
                                 setTagStaff(languageText.checkStaff[language as keyof typeof languageText.checkStaff]) :
@@ -128,7 +128,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant, language
                     />
                     <FormControlLabel control={
                         <Checkbox 
-                            sx={ {marginTop: "-4px"} }
+                            sx={ {marginTop: "-2px"} }
                             onChange={e => {
                                 e.target.checked ?
                                 setTagOther(languageText.checkOther[language as keyof typeof languageText.checkOther]) :
@@ -183,11 +183,12 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant, language
                     onChange={ (e) => setEmail(e.target.value) }
                 />
             </FormGroup>
-            <div className='mt-8 mx-[67px]'>
+            <div className='mt-12 justify-center flex mr-4'>
                 <Button 
+                    size="large"
                     disabled={disableSubmit || isLoading}
                     variant="contained"
-                    endIcon={isLoading ? <CircularProgress color="inherit" size={20}/> : <SendIcon />}
+                    endIcon={isLoading ? <CircularProgress color="inherit" size={22}/> : <SendIcon />}
                     onClick={ () => {
                         submit()                        
                     }}
