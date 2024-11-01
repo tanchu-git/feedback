@@ -57,7 +57,7 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
             )
     }
 
-    // Check if no rating has been selected
+    // Check rating
     const goodRating = value! >= Number(business[0].ratingLimit);
     const businessId = business[0].id;
     const placeId = business[0].placeId;  
@@ -65,7 +65,10 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
 
     return (
         <div>
-            <div className="absolute top-0 right-0 z-10"><SelectLanguage language={language} setLanguage={setLanguage}/></div>
+            {/* Language options */}
+            <div className="absolute top-0 right-0 z-10">
+                <SelectLanguage language={language} setLanguage={setLanguage}/>
+            </div>
             <div>
                 {/* Main input for animation, hooks and data for components to use */}
                 <motion.nav
