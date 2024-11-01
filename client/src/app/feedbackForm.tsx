@@ -7,15 +7,17 @@ import { Button, CircularProgress, FormLabel, TextField } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useCreateFeedbackMutation } from '@/state/api';
 import { formVariant } from './variants';
+import { languageText } from './language';
 
 type Props = {
     businessId: number
     rating: number
     placeId: string
     setVariant: Dispatch<React.SetStateAction<string>>
+    language: string
 }
 
-export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props ) => {
+export const FeedbackForm = ( {businessId, rating, placeId, setVariant, language}: Props ) => {
     const [tagProduct, setTagProduct] = useState("");
     const [tagService, setTagService] = useState("");
     const [tagStaff, setTagStaff] = useState("");
@@ -72,7 +74,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                         maxWidth: 270
                     }}
                 >
-                    This is totally optional, but you can help us improve!
+                    {languageText.formLabel[language as keyof typeof languageText.formLabel]}
                 </FormLabel>
                 <FormLabel 
                     component="legend"
@@ -82,7 +84,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                         my: 1
                     }}
                 >
-                    What went wrong?
+                    {languageText.formLabelTwo[language as keyof typeof languageText.formLabelTwo]}
                 </FormLabel>
             </div>
             <FormGroup>
@@ -91,39 +93,50 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                     <Checkbox 
                         sx={ {marginTop: "-4px"} }
                         onChange={e => {
-                            e.target.checked ? setTagProduct("Product") : setTagProduct("");
+                            e.target.checked ?
+                            setTagProduct(languageText.checkProduct[language as keyof typeof languageText.checkProduct]) :
+                            setTagProduct("");
                         }}
                     />} 
-                    label="Product" 
+                    label={languageText.checkProduct[language as keyof typeof languageText.checkProduct]} 
                 />
                 <FormControlLabel control={
                     <Checkbox 
                         sx={ {marginTop: "-4px"} }
                         onChange={e => {
-                            e.target.checked ? setTagService("Service") : setTagService("");
-                    }}
+                            e.target.checked ?
+                            setTagService(languageText.checkService[language as keyof typeof languageText.checkService]) :
+                            setTagService("");
+                        }}
                     />} 
-                    label="Service" />
+                    label={languageText.checkService[language as keyof typeof languageText.checkService]} 
+                />
                 <FormControlLabel control={
                     <Checkbox 
                         sx={ {marginTop: "-4px"} }
                         onChange={e => {
-                            e.target.checked ? setTagStaff("Staff") : setTagStaff("");  
-                    }}
+                            e.target.checked ?
+                            setTagStaff(languageText.checkStaff[language as keyof typeof languageText.checkStaff]) :
+                            setTagStaff("");  
+                        }}
                     />} 
-                    label="Staff" />
+                    label={languageText.checkStaff[language as keyof typeof languageText.checkStaff]}  
+                />
                 <FormControlLabel control={
                     <Checkbox 
                         sx={ {marginTop: "-4px"} }
                         onChange={e => {
-                            e.target.checked ? setTagOther("Other") : setTagOther("");  
-                    }}
+                            e.target.checked ?
+                            setTagOther(languageText.checkOther[language as keyof typeof languageText.checkOther]) :
+                            setTagOther("");  
+                        }}
                     />} 
-                    label="Other" />
+                    label={languageText.checkOther[language as keyof typeof languageText.checkOther]}  
+                />
                 <div className=''>
                     <TextField 
                         sx={ {width: '25ch'} }
-                        label="Details.." 
+                        label={languageText.textDetails[language as keyof typeof languageText.textDetails]} 
                         variant="outlined"
                         size="small"
                         multiline
@@ -142,19 +155,19 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                             maxWidth: 250
                         }}
                     >
-                        If you'd like us to follow up on your issue, please leave your contact info.
+                        {languageText.formFollowUp[language as keyof typeof languageText.formFollowUp]}
                     </FormLabel>
                 </div>   
                 <TextField 
                     sx={ {width: '15ch', marginBottom: 1} }
-                    label="Name" 
+                    label={languageText.formName[language as keyof typeof languageText.formName]} 
                     variant="outlined"
                     size="small"
                     onChange={ (e) => setName(e.target.value) }
                 />               
                 <TextField 
                     sx={{ width: '25ch' }}
-                    label="E-mail" 
+                    label={languageText.formEmail[language as keyof typeof languageText.formEmail]} 
                     variant="outlined"
                     size="small"
                     onChange={ (e) => setEmail(e.target.value) }
@@ -169,7 +182,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant}: Props )
                         submit()                        
                     }}
                 >
-                    Submit
+                    {languageText.submitBtn[language as keyof typeof languageText.submitBtn]} 
                 </Button>
             </div>
         </motion.div>

@@ -1,14 +1,19 @@
-export const language  = {
+import * as React from 'react';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
+export const languageText = {
     welcomeMsg: {
-        se: "Vad tycker du?",
-        en: "Share your thoughts!"
+        se: "Dela dina åsikter",
+        en: "Share your thoughts"
     },
     errorMsg: {
-        se: "Din länk finns inte hos oss.",
-        en: "Please verify your link"
+        se: "Vänligen verifiera din länk.",
+        en: "Please verify your link."
     },
     submittedMsg: {
-        se: "Din åsikt har mottagits",
+        se: "Din åsikt har skickats",
         en: "Feedback received"
     },
     submitErrorMsg: {
@@ -16,7 +21,7 @@ export const language  = {
         en: "Oopsie! Something went wrong on our end. Please try again later!"
     },
     formLabel: {
-        se: "Det här är helt frivilligt, men du kan hjälpa oss att bli bättre!",
+        se: "Det är helt frivilligt, men du kan hjälpa oss att bli bättre!",
         en: "This is totally optional, but you can help us improve!"
     },
     formLabelTwo: {
@@ -44,7 +49,7 @@ export const language  = {
         en: "Details.."
     },
     formFollowUp: {
-        se: "Ska vi ta kontakt med dig för att lösa problemet? Lämna då din kontakt info",
+        se: "Lämna din mejl om du vill att vi ska kontakta dig om det här.",
         en: "If you'd like us to follow up on your issue, please leave your contact info."
     },
     formName: {
@@ -60,3 +65,29 @@ export const language  = {
         en: "Submit"
     }
 }
+
+type Props = {
+    language: string
+    setLanguage: React.Dispatch<React.SetStateAction<string>>
+}
+
+export const SelectLanguage = ( {language, setLanguage}: Props ) => {
+    const handleChange = (event: SelectChangeEvent) => {
+        setLanguage(event.target.value);
+    };
+
+    return (
+        <FormControl sx={{ m: 1, minWidth: 60}} size="small">
+            <Select
+                autoWidth
+                value={language}
+                onChange={handleChange}
+            >
+                <MenuItem value={"se"}>SE</MenuItem>
+                <MenuItem value={"en"}>EN</MenuItem>
+            </Select>
+        </FormControl>
+    );
+}
+
+export default SelectLanguage;

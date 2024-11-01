@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import FeedbackForm from "./feedbackForm";
 import StarRating from "./starRating";
 import { whiteCircleVariant, titleVariant, buttonVariant, errorVariant } from "./variants";
+import SelectLanguage, { languageText } from "./language";
 
 type Props = {
     feedbackLink: string
@@ -23,6 +24,7 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
     const containerRef = useRef(null);
     const [value, setValue] = React.useState<number | null>(0);
     const [variant, setVariant] = React.useState("");
+    const [language, setLanguage] = React.useState("se");
 
     // Prisma built await function
     const {
@@ -48,7 +50,7 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
                         <h2 className="text-2xl font-semibold tracking-tighter bg-gradient-to-b 
                             from-black to-[#1443dd] text-transparent bg-clip-text"
                         >
-                            Please verify your link
+                            {languageText.errorMsg[language as keyof typeof languageText.errorMsg]}
                         </h2>
                     </Alert>
                 </div>
@@ -62,68 +64,77 @@ export const FeedbackView = ( {feedbackLink}: Props ) => {
     const googleReview = "https://search.google.com/local/writereview?placeid=";
 
     return (
-        // Main input for animation, hooks and data for components to use
-        <motion.nav
-            initial={"closed"}
-            animate={variant}
-            ref={containerRef}
-        >
-            {/* Animation - small white circle to expand and cover whole page */}
-            <motion.div className="background bg-white" variants={whiteCircleVariant} /> 
-
-            {/* Feedback component */}
-            <FeedbackForm businessId={businessId} rating={value!} placeId={placeId!} setVariant={setVariant} />
-
-            {/* Titles to display */}
-            <motion.h2 
-                className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b 
-                    from-black to-[#0a38cf] text-transparent bg-clip-text"
-                variants={titleVariant}
-            >
-                {isOpen ? "Feedback received!" : "Share your thoughts"}
-            </motion.h2>
-            <motion.h2 
-                className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b 
-                    from-black to-[#0a38cf] text-transparent bg-clip-text max-w-48"
-                variants={errorVariant}
-            >
-                Oopsie! Something went wrong on our end. Please try again later!
-            </motion.h2>
-
-            {/* Rating component */}
-            <StarRating isOpen={isOpen} setValue={setValue} value={value}></StarRating>
-
-            {/* Button to display */}
-            <motion.div
-                initial={"closed"}
-                variants={buttonVariant}
-                animate={value ? variant : "disabled"}             
-                className="absolute"                
-            >
-                <Fab 
-                    disabled={!value}
-                    color="primary"
-                    onClick={ () => { 
-                        {
-                            goodRating 
-                            ? 
-                            push(googleReview + placeId) 
-                            :                         
-                            !isOpen
-                            ?
-                            ( toggleOpen(), setVariant("open") )
-                            :
-                            ( toggleOpen(), setVariant("closed") )
-                        }
-                    }}
+        <div>
+            <div className="absolute top-0 right-0 z-10"><SelectLanguage language={language} setLanguage={setLanguage}/></div>
+            <div>
+                {/* Main input for animation, hooks and data for components to use */}
+                <motion.nav
+                    initial={"closed"}
+                    animate={variant}
+                    ref={containerRef}
                 >
-                    {
-                        !value ? <PanToolAltIcon fontSize="large" /> : 
-                        isOpen ? <RefreshIcon fontSize="large"  /> : 
-                            <DoneIcon fontSize="large" />
-                    }
-                </Fab>
-            </motion.div>
-        </motion.nav>    
+                    {/* Animation - small white circle to expand and cover whole page */}
+                    <motion.div className="background bg-white" variants={whiteCircleVariant} /> 
+
+                    {/* Feedback component */}
+                    <FeedbackForm businessId={businessId} rating={value!} placeId={placeId!} setVariant={setVariant} language={language} />
+
+                    {/* Titles to display */}
+                    <motion.h2 
+                        className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b 
+                            from-black to-[#0a38cf] text-transparent bg-clip-text text-center max-w-44 min-w-40"
+                        variants={titleVariant}
+                    >
+                        {
+                            isOpen ? 
+                            languageText.submittedMsg[language as keyof typeof languageText.submittedMsg] : 
+                            languageText.welcomeMsg[language as keyof typeof languageText.welcomeMsg]
+                        }
+                    </motion.h2>
+                    <motion.h2 
+                        className="absolute text-lg font-bold tracking-tighter bg-gradient-to-b 
+                            from-black to-[#0a38cf] text-transparent bg-clip-text max-w-48"
+                        variants={errorVariant}
+                    >
+                        {languageText.submitErrorMsg[language as keyof typeof languageText.submitErrorMsg]}
+                    </motion.h2>
+
+                    {/* Rating component */}
+                    <StarRating isOpen={isOpen} setValue={setValue} value={value}></StarRating>
+
+                    {/* Button to display */}
+                    <motion.div
+                        initial={"closed"}
+                        variants={buttonVariant}
+                        animate={value ? variant : "disabled"}             
+                        className="absolute"                
+                    >
+                        <Fab 
+                            disabled={!value}
+                            color="primary"
+                            onClick={ () => { 
+                                {
+                                    goodRating 
+                                    ? 
+                                    push(googleReview + placeId) 
+                                    :                         
+                                    !isOpen
+                                    ?
+                                    ( toggleOpen(), setVariant("open") )
+                                    :
+                                    ( toggleOpen(), setVariant("closed") )
+                                }
+                            }}
+                        >
+                            {
+                                !value ? <PanToolAltIcon fontSize="large" /> : 
+                                isOpen ? <RefreshIcon fontSize="large"  /> : 
+                                    <DoneIcon fontSize="large" />
+                            }
+                        </Fab>
+                    </motion.div>
+                </motion.nav>
+            </div>
+        </div> 
     )
 }
