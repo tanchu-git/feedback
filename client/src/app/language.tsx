@@ -49,8 +49,8 @@ export const languageText = {
         en: "Details.."
     },
     formFollowUp: {
-        se: "Lämna din mejl om du vill att vi ska kontakta dig om det här.",
-        en: "If you'd like us to follow up on your issue, please leave your contact info."
+        se: "Lämna din mejl om du vill att vi ska kontakta dig gällande detta.",
+        en: "Leave your e-mail, if you would like us to follow up on your issue."
     },
     formName: {
         se: "Namn",
@@ -77,7 +77,7 @@ export const SelectLanguage = ( {language, setLanguage}: Props ) => {
     };
 
     return (
-        <FormControl sx={{ m: 1, minWidth: 60}} size="small">
+        <FormControl sx={ {m: 1, minWidth: 60} } size="small">
             <Select
                 autoWidth
                 value={language}

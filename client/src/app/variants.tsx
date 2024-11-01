@@ -12,7 +12,7 @@ export const whiteCircleVariant = {
     }),
     closed: {
         clipPath: "circle(0px)",
-        y: 100,
+        y: 110,
         transition: {
             type: "spring",
             stiffness: 310,
@@ -43,7 +43,7 @@ export const whiteCircleVariant = {
 
 export const buttonVariant = {
     open: {
-        y: 230,
+        y: 240,
         x: 47,
         transition: {
             type: "spring",
@@ -118,7 +118,7 @@ export const titleVariant = {
 
 export const ratingVariant = {
     open: {
-        y: -380,
+        y: -360,
         scale: 1,
         transition: {
             type: "spring",
@@ -159,7 +159,7 @@ export const ratingVariant = {
 
 export const formVariant = {
     open: {
-        y: -330,
+        y: -310,
         x: -50,
         opacity: 1,
         transition: {

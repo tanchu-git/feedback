@@ -71,7 +71,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant, language
                         color: 'black',
                         fontWeight: 'bold',
                         fontSize: 14,
-                        maxWidth: 270
+                        maxWidth: 260
                     }}
                 >
                     {languageText.formLabel[language as keyof typeof languageText.formLabel]}
@@ -81,70 +81,80 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant, language
                     sx={{
                         color: 'black',
                         fontSize: 16,
-                        my: 1
+                        mt: 2,
+                        mb: 1
                     }}
                 >
                     {languageText.formLabelTwo[language as keyof typeof languageText.formLabelTwo]}
                 </FormLabel>
             </div>
+            <div className='flex columns-2 justify-between mx-2'>
+                <FormGroup>
+                    <FormControlLabel 
+                        control={
+                        <Checkbox 
+                            sx={ {marginTop: "-4px"} }
+                            onChange={e => {
+                                e.target.checked ?
+                                setTagProduct(languageText.checkProduct[language as keyof typeof languageText.checkProduct]) :
+                                setTagProduct("");
+                            }}
+                        />} 
+                        label={languageText.checkProduct[language as keyof typeof languageText.checkProduct]} 
+                    />
+                    <FormControlLabel control={
+                        <Checkbox 
+                            sx={ {marginTop: "-4px"} }
+                            onChange={e => {
+                                e.target.checked ?
+                                setTagService(languageText.checkService[language as keyof typeof languageText.checkService]) :
+                                setTagService("");
+                            }}
+                        />} 
+                        label={languageText.checkService[language as keyof typeof languageText.checkService]} 
+                    />
+                                    </FormGroup>
+                                    <FormGroup>
+                    <FormControlLabel control={
+                        <Checkbox 
+                            sx={ {marginTop: "-4px"} }
+                            onChange={e => {
+                                e.target.checked ?
+                                setTagStaff(languageText.checkStaff[language as keyof typeof languageText.checkStaff]) :
+                                setTagStaff("");  
+                            }}
+                        />} 
+                        label={languageText.checkStaff[language as keyof typeof languageText.checkStaff]}  
+                    />
+                    <FormControlLabel control={
+                        <Checkbox 
+                            sx={ {marginTop: "-4px"} }
+                            onChange={e => {
+                                e.target.checked ?
+                                setTagOther(languageText.checkOther[language as keyof typeof languageText.checkOther]) :
+                                setTagOther("");  
+                            }}
+                        />} 
+                        label={languageText.checkOther[language as keyof typeof languageText.checkOther]}  
+                    />                    
+                </FormGroup>
+            </div>
             <FormGroup>
-                <FormControlLabel 
-                    control={
-                    <Checkbox 
-                        sx={ {marginTop: "-4px"} }
-                        onChange={e => {
-                            e.target.checked ?
-                            setTagProduct(languageText.checkProduct[language as keyof typeof languageText.checkProduct]) :
-                            setTagProduct("");
-                        }}
-                    />} 
-                    label={languageText.checkProduct[language as keyof typeof languageText.checkProduct]} 
-                />
-                <FormControlLabel control={
-                    <Checkbox 
-                        sx={ {marginTop: "-4px"} }
-                        onChange={e => {
-                            e.target.checked ?
-                            setTagService(languageText.checkService[language as keyof typeof languageText.checkService]) :
-                            setTagService("");
-                        }}
-                    />} 
-                    label={languageText.checkService[language as keyof typeof languageText.checkService]} 
-                />
-                <FormControlLabel control={
-                    <Checkbox 
-                        sx={ {marginTop: "-4px"} }
-                        onChange={e => {
-                            e.target.checked ?
-                            setTagStaff(languageText.checkStaff[language as keyof typeof languageText.checkStaff]) :
-                            setTagStaff("");  
-                        }}
-                    />} 
-                    label={languageText.checkStaff[language as keyof typeof languageText.checkStaff]}  
-                />
-                <FormControlLabel control={
-                    <Checkbox 
-                        sx={ {marginTop: "-4px"} }
-                        onChange={e => {
-                            e.target.checked ?
-                            setTagOther(languageText.checkOther[language as keyof typeof languageText.checkOther]) :
-                            setTagOther("");  
-                        }}
-                    />} 
-                    label={languageText.checkOther[language as keyof typeof languageText.checkOther]}  
-                />
                 <div className=''>
                     <TextField 
-                        sx={ {width: '25ch'} }
+                        sx={{
+                            width: '25ch',
+                            mt: 1
+                        }}
                         label={languageText.textDetails[language as keyof typeof languageText.textDetails]} 
                         variant="outlined"
                         size="small"
                         multiline
-                        rows={2}
+                        rows={3}
                         onChange={ (e) => setMessage(e.target.value) }
                     />
                 </div>
-                <div className='mt-3 mb-1'>
+                <div className='mt-4 mb-1'>
                     <FormLabel
                         component="legend"
                         sx={{
@@ -157,7 +167,7 @@ export const FeedbackForm = ( {businessId, rating, placeId, setVariant, language
                     >
                         {languageText.formFollowUp[language as keyof typeof languageText.formFollowUp]}
                     </FormLabel>
-                </div>   
+                </div>                
                 <TextField 
                     sx={ {width: '15ch', marginBottom: 1} }
                     label={languageText.formName[language as keyof typeof languageText.formName]} 
